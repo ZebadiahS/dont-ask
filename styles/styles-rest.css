@@ -1,0 +1,182 @@
+/* === GENERAL === */
+
+:root {
+  --border: 1px solid rgb(120, 160, 220);
+  --shadow: 0px 0px 8px 2px rgb(120, 160, 220);
+  --shadow-hover: 0px 0px 16px 4px rgb(120, 160, 220);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-family: "Lora", serif;
+  font-optical-sizing: auto;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 300;
+  cursor: url("../images/landing-images/pointer.png") 16 16, default;
+}
+
+body {
+  background: rgb(160, 200, 255);
+  margin: 0;
+  overflow: hidden; /* prevents vertical scrolling */
+  justify-content: space-between;
+}
+
+h2 {
+  font-size: 1.5rem;
+  font-weight: 500;
+
+}
+
+a, button {
+  --tilt: 0deg;
+  
+  border: var(--border);
+  border-radius: 15px;
+  box-shadow: var(--shadow);
+  color: black;
+  background: rgba(160, 200, 255, 0.4);
+  backdrop-filter: blur(2px);
+  cursor: url("../images/landing-images/hover.png") 16 16, default;
+  height: fit-content;
+  padding: 10px 15px;
+  text-decoration: none;
+  transform: rotate(var(--tilt));
+  transition: box-shadow 0.25s ease, transform 0.25s ease;
+  width: fit-content;
+}
+
+a:hover, button:hover {
+  box-shadow: var(--shadow-hover);
+  transition: box-shadow 0.25s ease, transform 0.25s ease;
+}
+
+/* === NAVIGATION === */
+nav {
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 10;
+  margin: 2rem max(1rem, 5%) 4rem;
+  max-width: 1690px;
+}
+
+.navigation {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 1rem;
+  height: fit-content;
+  list-style: none;
+  padding: 0;
+}
+
+.back {
+  display: block;
+}
+
+.navigation a {
+  display: block;
+}
+
+
+/* === FLOATING BUBBLES CONTAINER === */
+.floating-projects {
+  height: 100vh;
+  left: 0;
+  overflow: hidden;
+  pointer-events: none;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1;
+}
+
+
+/* === BUBBLES === */
+.project-bubble {
+  overflow: hidden;
+  pointer-events: auto;
+  position: absolute;
+  transition: transform 0.2s ease;
+  z-index: 5;
+}
+
+#description-box {
+  position: fixed;
+  top: 40%;
+  left: 50%;
+  transform: translateX(-50%);
+  max-width: 500px;
+  padding: 16px 20px;
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+  text-align: left;
+  transition: opacity 0.3s ease;
+  opacity: 0;
+  pointer-events: none;
+}
+
+
+/* === VENN DIAGRAM PAGE === */
+
+.venn-container {
+  height: 100vh;
+  left: 0;
+  overflow: hidden;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1;
+}
+
+.venn-circle {
+  position: absolute;
+  width: 400px;
+  height: 400px;
+  border-radius: 50%;
+  border: var(--border);
+  box-shadow: var(--shadow);
+  text-align: center;
+  font-size: 1.2rem;
+  background: white;
+  overflow: hidden;
+  cursor: url("../images/landing-images/hover.png") 16 16, default;
+
+  transition: transform 0.2s ease, opacity 0.4s ease;
+}
+
+.lived {
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.venn-circle.lived {
+  width: 600px;
+  height: 600px;
+  opacity: 0;
+  background: white;
+}
+
+.venn-circle h2 {
+  position: relative;
+  top: 12%;
+  transform: translateY(-50%);
+}
+
+.venn-circle img {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
