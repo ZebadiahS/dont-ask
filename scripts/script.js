@@ -12,12 +12,12 @@ const VOLUME = {
 const BUBBLE_PADDING = 20;
 
 // Mouse movement sound cooldown
-const MOVE_COOLDOWN = 50;
+const MOVE_COOLDOWN = 100;
 
 // Mouse repulsion radius + force
 const MOUSE_REPEL = {
-  maxDist: 400,
-  forceScale: 0.25
+  maxDist: 450,
+  forceScale: 0.3
 };
 
 
@@ -34,7 +34,7 @@ function loadSounds(paths, volume) {
 }
 
 const hoverSound = new Audio("./sounds/stab.wav");
-hoverSound.volume = 0.15;
+hoverSound.volume = 0.2;
 
 const mouseMoveSounds = loadSounds([
   './sounds/woosh.wav',
