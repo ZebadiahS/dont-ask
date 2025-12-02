@@ -1,18 +1,300 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>My Design Portfolio</title>
-  <link rel="stylesheet" href="./styles/normalize.css">
-  <link rel="stylesheet" href="./style2.css" />
-</head>
-<body>
-  <a class="project-1" href="#"><img src="./images/landing-images/barrier.png" alt=""></a>
-  <a class="project-2" href="#"><img src="./images/landing-images/barrier.png" alt=""></a>
-  <a class="project-3" href="#"><img src="./images/landing-images/barrier.png" alt=""></a>
-  <a class="project-4" href="#"><img src="./images/landing-images/barrier.png" alt=""></a>
- 
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Making Place</title>
 
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles/normalize.css" />
+    <link rel="stylesheet" href="./styles/styles-rest.css" />
+  </head>
+  <body id="web">
+    <nav>
+      <ul class="navigation">
+        <li>
+          <a href="./making-place.html">
+            <svg class="back" width="30px" height="23px">
+              <path
+                d="M 5 11.5 L 30 11.5"
+                fill="none"
+                stroke-width="2.5"
+                stroke="black"
+              />
+              <path
+                d="M 15 0 L 5 11.5 L 15 23"
+                fill="none"
+                stroke-width="2.5"
+                stroke="black"
+              />
+            </svg>
+          </a>
+        </li>
+        <li>
+          <a class="method" href="./methodology-map.html">Methodology Map</a>
+        </li>
+        <li><a class="method" href="./taxonomy.html">Taxonomy</a></li>
+      </ul>
+    </nav>
+
+    <main class="catalog">
+      <!-- First Project -->
+      <section>
+        <div class="carousel">
+          <div class="carousel_track-container">
+            <ul class="carousel_track">
+              <li class="carousel_slide current-slide">
+                <img
+                  class="carousel_img"
+                  src="images/creating-images/apple_1.webp"
+                  alt=""
+                />
+              </li>
+              <li class="carousel_slide">
+                <img
+                  class="carousel_img"
+                  src="images/creating-images/apple_1.webp"
+                  alt=""
+                />
+              </li>
+              <li class="carousel_slide">
+                <img
+                  class="carousel_img"
+                  src="images/creating-images/apple_1.webp"
+                  alt=""
+                />
+              </li>
+            </ul>
+          </div>
+
+          <button class="carousel_button carousel_button--left is-hidden">
+            <svg class="back" width="30px" height="23px">
+              <path
+                d="M 5 11.5 L 30 11.5"
+                fill="none"
+                stroke-width="2.5"
+                stroke="black"
+              />
+              <path
+                d="M 15 0 L 5 11.5 L 15 23"
+                fill="none"
+                stroke-width="2.5"
+                stroke="black"
+              />
+            </svg>
+          </button>
+
+          <button class="carousel_button carousel_button--right">
+            <svg class="back" width="30px" height="23px">
+              <path
+                d="M 0 11.5 L 25 11.5"
+                fill="none"
+                stroke-width="2.5"
+                stroke="black"
+              />
+              <path
+                d="M 15 0 L 25 11.5 L 15 23"
+                fill="none"
+                stroke-width="2.5"
+                stroke="black"
+              />
+            </svg>
+          </button>
+
+          <div class="carousel_nav">
+            <button class="carousel_indicator current-slide"></button>
+            <button class="carousel_indicator"></button>
+            <button class="carousel_indicator"></button>
+          </div>
+        </div>
+
+        <div class="prose">
+          <h2>Adams Apple</h2>
+          <p>I enjoy making home-brewed hard cider. As a design project, I created a logo and label for my bottled cider. I called the brand Adams Apple as a pun to emphasize how I view brewing cider as a fun and quirky hobby. To emphasize the homemade nature of the cider, I made the label from textured craft paper and created patterns by deconstructing the logo.</p>
+
+          <p>I created the cider itself and designed its visual form, originating both the content and its presentation. The bottled cider becomes a place, an object where my personal relationship to cider-making, my sense of enjoyment with the wordplay, and my values around handmade craft are all made visible through the unified creation of product and design.</p>
+        </div>
+      </section>
+
+      <!-- Second Project -->
+      <section>
+        <div class="carousel">
+          <div class="carousel_track-container">
+            <ul class="carousel_track">
+              <li class="carousel_slide current-slide">
+                <img
+                  class="carousel_img"
+                  src="images/creating-images/ai_1.webp"
+                  alt=""
+                />
+              </li>
+              <li class="carousel_slide">
+                <img
+                  class="carousel_img"
+                  src="images/creating-images/ai_2.webp"
+                  alt=""
+                />
+              </li>
+              <li class="carousel_slide">
+                <img
+                  class="carousel_img"
+                  src="images/creating-images/ai_3.webp"
+                  alt=""
+                />
+              </li>
+            </ul>
+          </div>
+
+          <button class="carousel_button carousel_button--left is-hidden">
+            <svg class="back" width="30px" height="23px">
+              <path
+                d="M 5 11.5 L 30 11.5"
+                fill="none"
+                stroke-width="2.5"
+                stroke="black"
+              />
+              <path
+                d="M 15 0 L 5 11.5 L 15 23"
+                fill="none"
+                stroke-width="2.5"
+                stroke="black"
+              />
+            </svg>
+          </button>
+
+          <button class="carousel_button carousel_button--right">
+            <svg class="back" width="30px" height="23px">
+              <path
+                d="M 0 11.5 L 25 11.5"
+                fill="none"
+                stroke-width="2.5"
+                stroke="black"
+              />
+              <path
+                d="M 15 0 L 25 11.5 L 15 23"
+                fill="none"
+                stroke-width="2.5"
+                stroke="black"
+              />
+            </svg>
+          </button>
+
+          <div class="carousel_nav">
+            <button class="carousel_indicator current-slide"></button>
+            <button class="carousel_indicator"></button>
+            <button class="carousel_indicator"></button>
+          </div>
+        </div>
+
+        <div class="prose">
+          <h2>AI&&ME</h2>
+          <p>Created from a patchwork of materials and surfaces transferred with charcoal, this deconstructed book and its contents stand as an expression of an interest in grounding within the material world. It is a stark contrast to the use of AI within the written content of the book. The extensive analog process of the creation and presentation of the piece stands in strong contrast to the fast and digital nature of AI.</p>
+        </div>
+      </section>
+
+      <!-- Third Project -->
+      <section>
+        <div class="carousel">
+          <div class="carousel_track-container">
+            <ul class="carousel_track">
+              <li class="carousel_slide current-slide">
+                <img
+                  class="carousel_img"
+                  src="images/creating-images/case.webp"
+                  alt=""
+                />
+              </li>
+              <li class="carousel_slide">
+                <img
+                  class="carousel_img"
+                  src="images/creating-images/blume.webp"
+                  alt=""
+                />
+              </li>
+              <li class="carousel_slide">
+                <img
+                  class="carousel_img"
+                  src="images/creating-images/blume_open.webp"
+                  alt=""
+                />
+              </li>
+              <li class="carousel_slide">
+                <img
+                  class="carousel_img"
+                  src="images/creating-images/covers.webp"
+                  alt=""
+                />
+              </li>
+              <li class="carousel_slide">
+                <img
+                  class="carousel_img"
+                  src="images/creating-images/window.webp"
+                  alt=""
+                />
+              </li>
+              <li class="carousel_slide">
+                <img
+                  class="carousel_img"
+                  src="images/creating-images/disc.webp"
+                  alt=""
+                />
+              </li>
+            </ul>
+          </div>
+
+          <button class="carousel_button carousel_button--left is-hidden">
+            <svg class="back" width="30px" height="23px">
+              <path
+                d="M 5 11.5 L 30 11.5"
+                fill="none"
+                stroke-width="2.5"
+                stroke="black"
+              />
+              <path
+                d="M 15 0 L 5 11.5 L 15 23"
+                fill="none"
+                stroke-width="2.5"
+                stroke="black"
+              />
+            </svg>
+          </button>
+
+          <button class="carousel_button carousel_button--right">
+            <svg class="back" width="30px" height="23px">
+              <path
+                d="M 0 11.5 L 25 11.5"
+                fill="none"
+                stroke-width="2.5"
+                stroke="black"
+              />
+              <path
+                d="M 15 0 L 25 11.5 L 15 23"
+                fill="none"
+                stroke-width="2.5"
+                stroke="black"
+              />
+            </svg>
+          </button>
+
+          <div class="carousel_nav">
+            <button class="carousel_indicator current-slide"></button>
+            <button class="carousel_indicator"></button>
+            <button class="carousel_indicator"></button>
+          </div>
+        </div>
+
+        <div class="prose">
+          <h2>blume</h2>
+          <p>The FitnessGram™ Pacer Test is a multistage aerobic capacity test that progressively gets more difficult as it continues. The 20 meter pacer test will begin in 30 seconds. Line up at the start. The running speed starts slowly, but gets faster each minute after you hear this signal. [beep] A single lap should be completed each time you hear this sound. [ding] Remember to run in a straight line, and run as long as possible. The second time you fail to complete a lap before the sound, your test is over. The test will begin on the word start. On your mark, get ready, start.</p>
+        </div>
+      </section>
+
+    </main>
+    <script src="./scripts/script-projects.js"></script>
+  </body>
 </html>

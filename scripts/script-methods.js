@@ -4,11 +4,13 @@
 
 const containerWidth = window.innerWidth;
 const containerHeight = window.innerHeight;
+const background = document.querySelector('body');
+
 const repelSound = new Audio("./sounds/chords.wav");
 const hoverSound = new Audio("./sounds/stab.wav");
-hoverSound.volume = 0.15;
+hoverSound.volume = 0.2;
 
-let isInsideRepelZone = false;              // tracks state
+let livedVisible = false;
 
 const circles = [
   {
@@ -16,30 +18,27 @@ const circles = [
     x: 0, y: 0,
     vx: 0, vy: 0,
     radius: 200,
-    homePX: 0.20, // 15% from left
-    homePY: 0.5   // 50% from top
+    homePX: 0.20,
+    homePY: 0.5
   },
   {
     el: document.getElementById("circle-imagined"),
     x: 0, y: 0,
     vx: 0, vy: 0,
     radius: 200,
-    homePX: 0.80, // 85% from left
+    homePX: 0.80,
     homePY: 0.5
   }
 ];
 
 const lived = document.getElementById("circle-lived");
-let livedVisible = false;
-
 
 const mouse = { x: window.innerWidth/2, y: window.innerHeight/2, active: false };
 
-const MOUSE_REPEL = {
-  maxDist: 400,
-  forceScale: 0.04
+const MOUSE_PULL = {
+  maxDist: 370,
+  forceScale: 0.05
 };
-
 
 /* -------------------------------------------------------
    AUDIO HELPERS
@@ -55,17 +54,19 @@ function fadeOut(audio, duration = 250) {
       audio.volume = startVolume * (1 - p);
       requestAnimationFrame(tick);
     } else {
-      audio.volume = 1;      // reset for next play
+      audio.volume = 1;
       audio.pause();
-      audio.currentTime = 0; // fully stop for next activation
+      audio.currentTime = 0;
     }
   }
 
   requestAnimationFrame(tick);
 }
 
+/* -------------------------------------------------------
+   MOUSE TRACKING
+------------------------------------------------------- */
 
-// Track mouse
 document.addEventListener('mousemove', e => {
   mouse.x = e.clientX;
   mouse.y = e.clientY;
@@ -74,6 +75,9 @@ document.addEventListener('mousemove', e => {
 
 document.addEventListener('mouseleave', () => mouse.active = false);
 
+/* -------------------------------------------------------
+   INITIAL POSITIONS
+------------------------------------------------------- */
 
 function setInitialPositions() {
   circles.forEach(c => {
@@ -86,6 +90,7 @@ setInitialPositions();
 /* -------------------------------------------------------
    ANIMATION LOOP
 ------------------------------------------------------- */
+
 function animate() {
   const t = Date.now() * 0.0025;
 
@@ -94,30 +99,29 @@ function animate() {
     const wobbleX = Math.sin(t + i) * 10;
     const wobbleY = Math.cos(t * 0.8 + i) * 10;
 
-    // Mouse repulsion
+    // Mouse attraction
     if (mouse.active) {
       const dx = mouse.x - (c.x + c.radius);
       const dy = mouse.y - (c.y + c.radius);
       const dist = Math.hypot(dx, dy);
 
-      if (dist < MOUSE_REPEL.maxDist) {
+      if (dist < MOUSE_PULL.maxDist) {
+        // Quadratic falloff
+        const t = dist / MOUSE_PULL.maxDist;
+        const falloff = 1 - t*t;
 
-        const force = (1 - dist / MOUSE_REPEL.maxDist) * MOUSE_REPEL.forceScale;
-        c.vx += dx * force;
-        c.vy += dy * force;
-
+        c.vx += dx * MOUSE_PULL.forceScale * falloff;
+        c.vy += dy * MOUSE_PULL.forceScale * falloff;
       }
     }
 
     // Pull toward initial position (centering)
-    const homeX = (i === 0 ? 150 : window.innerWidth - 450);
-    const homeY = window.innerHeight/2 - 150;
-    c.vx += (c.homePX * window.innerWidth - c.radius - c.x) * 0.002;
-    c.vy += (c.homePY * window.innerHeight - c.radius - c.y) * 0.002; 
+    c.vx += (c.homePX * window.innerWidth - c.radius - c.x) * 0.004;
+    c.vy += (c.homePY * window.innerHeight - c.radius - c.y) * 0.004;
 
     // Damping
-    c.vx *= 0.9;
-    c.vy *= 0.9;
+    c.vx *= 0.85;
+    c.vy *= 0.85;
 
     // Apply velocity
     c.x += c.vx;
@@ -138,6 +142,7 @@ animate();
 /* -------------------------------------------------------
    CHECK OVERLAP
 ------------------------------------------------------- */
+
 function checkOverlap() {
   const rectP = circles[0].el.getBoundingClientRect();
   const rectI = circles[1].el.getBoundingClientRect();
@@ -148,46 +153,41 @@ function checkOverlap() {
 
   const overlapThreshold = (rectP.width/2 + rectI.width/2) * 0.75;
 
-  // ---- Lived becomes visible (enter event) ----
+  // Lived becomes visible
   if (dist < overlapThreshold && !livedVisible) {
-
     livedVisible = true;
-
     lived.style.opacity = 1;
+    lived.style.visibility = "visible";
     lived.style.transform = "translate(-50%, -50%) scale(1)";
-
-    // SOUND START
+    background.style.background = "black";
     repelSound.volume = 1;
     repelSound.play().catch(()=>{});
-
-  }
-
-  // ---- Lived becomes hidden (exit event) ----
+  } 
+  // Lived hidden
   else if (dist >= overlapThreshold && livedVisible) {
-
     livedVisible = false;
-
     lived.style.opacity = 0;
+    lived.style.visibility = "hidden";
     lived.style.transform = "translate(-50%, -50%) scale(0.9)";
-
-    // SOUND STOP (fade-out)
+    background.style.background = "rgb(160, 200, 255)";
     fadeOut(repelSound, 300);
-
   }
 }
 
 /* -------------------------------------------------------
-   SOUNDS
+   BUTTON HOVER SOUND
 ------------------------------------------------------- */
 
 document.querySelectorAll("button, a").forEach(btn => {
   btn.addEventListener("mouseenter", () => {
-    hoverSound.currentTime = 0; // rewind
+    hoverSound.currentTime = 0;
     hoverSound.play();
   });
 });
 
-
+/* -------------------------------------------------------
+   TILT EFFECTS
+------------------------------------------------------- */
 
 function setupTiltEffects() {
   const applyTilt = el => {
@@ -205,6 +205,7 @@ function setupTiltEffects() {
 /* -------------------------------------------------------
    RESIZE HANDLING
 ------------------------------------------------------- */
+
 window.addEventListener('resize', () => {
   setInitialPositions();
 });
